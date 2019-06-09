@@ -2,29 +2,43 @@ version: "3"
 
 services:
 
- v2ray:
-   image: v2ray/official
-   restart: always
-   volumes:
-     - ./v2ray:/etc/v2ray
-     - ./log/v2ray:/var/log/v2ray
-   ports:
-     - 10086:10086
-     - 10086:10086/udp
-   command: ["v2ray", "-config=/etc/v2ray/config.json"]
+  v2ray:
+    image: v2ray/official
+    restart: always
+    volumes:
+      - ./v2ray:/etc/v2ray
+      - ./log/v2ray:/var/log/v2ray
+    ports:
+      - 10086:10086
+      - 10086:10086/udp
+    command: ["v2ray", "-config=/etc/v2ray/config.json"]
+  
+  
+  shadowsocks:
+    image: hupili/shadowsocks
+    restart: always
+    ports:
+      - "33333:33333"
+    environment:
+      SS_SERVER: 0.0.0.0
+      SS_PORT: 33333
+      SS_PASSWORD: passwordpassword
+      SS_ENCRYPTION: aes-256-cfb
 
 
- shadowsocks:
-   image: hupili/shadowsocks
-   restart: always
-   ports:
-     - "33333:33333"
-   environment:
-     SS_SERVER: 0.0.0.0
-     SS_PORT: 33333
-     SS_PASSWORD: passwordpassword
-     SS_ENCRYPTION: aes-256-cfb
-
+     # ssr:
+     #   image: breakwa11/shadowsocksr
+     #   container_name: ssr
+     #   environment:
+     #     - SERVER_ADDR=0.0.0.0
+     #     - SERVER_PORT=8388
+     #     - PASSWORD=passwordpassword
+     #     - METHOD=aes-256-cfb
+     #     - OBFS=tls1.2_ticket_auth
+     #     - PROTOCOL=auth_sha1_v4
+     #   ports:
+     #     - "8388:8388"
+     #
 
 
      #       l2tp:
