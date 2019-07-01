@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    shadowsocks:
+      image: hupili/shadowsocks
+      restart: always
+      ports:
+        - "33333:33333"
+      environment:
+        SS_SERVER: 0.0.0.0
+        SS_PORT: 33333
+        SS_PASSWORD: passwordpassword
+        SS_ENCRYPTION: aes-256-cfb
+   
+   

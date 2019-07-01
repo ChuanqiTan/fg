@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  v2ray:
+    image: v2ray/official
+    restart: always
+    volumes:
+      - ./v2ray:/etc/v2ray
+      - ./log/v2ray:/var/log/v2ray
+    ports:
+      - 10086:10086
+      - 10086:10086/udp
+    command: ["v2ray", "-config=/etc/v2ray/config.json"]
+  
