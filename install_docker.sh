@@ -9,5 +9,9 @@ systemctl start docker
 systemctl enable docker
 
 # 安装 Compose
-apt-get install python-pip -y
-pip install docker-compose
+sudo apt install docker-compose -y
+#apt-get install python-pip -y
+#pip install docker-compose
+
+# RUN
+cd v2ray && docker-compose up -d
